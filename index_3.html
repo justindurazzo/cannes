@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cannes Lions 2026 - Trip Dashboard</title>
+<meta name="theme-color" content="#1f5ea8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
+<style>
+:root{
+--font-sans:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+--page-bg:#faf9f6;
+--color-background-primary:#ffffff;
+--color-background-secondary:#f3f2ee;
+--color-background-warning:#fbf1e2;
+--color-background-info:#e9f1fb;
+--color-text-primary:#1c1c1a;
+--color-text-secondary:#6c6c66;
+--color-text-warning:#8a5a12;
+--color-text-info:#1f5ea8;
+--color-border-secondary:#cfcec8;
+--color-border-tertiary:#e7e6e0;
+--border-radius-md:9px;
+--border-radius-lg:13px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--page-bg);color:var(--color-text-primary);font-family:var(--font-sans);-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:22px 16px 72px}
+.hero{margin:0 0 18px}
+.hero .eyebrow{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-info);font-weight:600}
+.hero h1{font-size:28px;line-height:1.1;margin:6px 0 4px;font-weight:600}
+.hero .sub{font-size:14px;color:var(--color-text-secondary)}
+.tabbar{position:sticky;top:0;z-index:20;display:flex;flex-wrap:nowrap;overflow-x:auto;gap:8px;margin:0 -16px 1.25rem;padding:12px 16px;background:rgba(250,249,246,0.92);backdrop-filter:blur(6px);border-bottom:0.5px solid var(--color-border-tertiary);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tabbar::-webkit-scrollbar{display:none}
+.tab{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;font-size:13px;font-family:var(--font-sans);color:var(--color-text-secondary);background:transparent;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);cursor:pointer;white-space:nowrap;flex-shrink:0}
+.tab:hover{background:var(--color-background-secondary)}
+.tab.active{background:var(--color-background-secondary);border-color:var(--color-border-secondary);color:var(--color-text-primary);font-weight:500}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin:0 0 12px}
+.row{display:flex;align-items:flex-start;gap:10px;padding:8px 0;font-size:14px;border-top:0.5px solid var(--color-border-tertiary)}
+.row:first-child{border-top:0}
+.lbl{color:var(--color-text-secondary);min-width:92px;display:flex;align-items:center;gap:6px;flex-shrink:0}
+.val{color:var(--color-text-primary);flex:1}
+.hdr{display:flex;align-items:center;gap:10px;margin:0 0 4px;font-size:16px;font-weight:500;color:var(--color-text-primary)}
+.hdr i{font-size:20px}
+.subhdr{font-size:13px;color:var(--color-text-secondary);margin:0 0 10px}
+.metricgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:0 0 14px}
+.metric{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:0.9rem 1rem}
+.metric .m-lbl{font-size:12px;color:var(--color-text-secondary);display:flex;align-items:center;gap:6px}
+.metric .m-val{font-size:18px;font-weight:500;color:var(--color-text-primary);margin-top:4px}
+.callout{background:var(--color-background-warning);border-radius:var(--border-radius-md);padding:0.85rem 1rem;font-size:14px;color:var(--color-text-warning);display:flex;gap:10px;align-items:flex-start}
+.callout i{font-size:18px;flex-shrink:0;margin-top:1px}
+.note{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem 1.1rem;font-size:14px;line-height:1.55;color:var(--color-text-primary)}
+.todo{display:flex;align-items:flex-start;gap:10px;padding:9px 0;font-size:14px;border-top:0.5px solid var(--color-border-tertiary)}
+.todo:first-child{border-top:0}
+.todo i{font-size:18px;color:var(--color-text-secondary);flex-shrink:0;margin-top:1px}
+.htable{width:100%;font-size:13px;border-collapse:collapse;margin-top:6px}
+.htable td{padding:6px 0;border-top:0.5px solid var(--color-border-tertiary)}
+.htable td:last-child{text-align:right;color:var(--color-text-secondary)}
+.vip{display:inline-flex;align-items:center;gap:5px;background:var(--color-background-info);color:var(--color-text-info);font-size:12px;padding:4px 10px;border-radius:var(--border-radius-md);margin:4px 6px 0 0}
+.pill{display:inline-flex;align-items:center;gap:5px;background:var(--color-background-warning);color:var(--color-text-warning);font-size:12px;padding:3px 9px;border-radius:var(--border-radius-md)}
+.matrow{display:flex;align-items:center;gap:10px;padding:9px 0;font-size:14px;border-top:0.5px solid var(--color-border-tertiary)}
+.matrow:first-of-type{border-top:0}
+.matrow i{font-size:18px;color:var(--color-text-secondary);flex-shrink:0}
+a.lk{color:var(--color-text-info);text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+a.lk:hover{text-decoration:underline}
+a.inl{color:var(--color-text-info);text-decoration:underline}
+.dayhdr{display:flex;align-items:center;gap:12px;margin:0 0 4px}
+.datebox{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:46px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:6px 8px}
+.datebox .dow{font-size:11px;color:var(--color-text-secondary)}
+.datebox .dnum{font-size:18px;font-weight:500;color:var(--color-text-primary);line-height:1.1}
+.daytitle{font-size:15px;font-weight:500;color:var(--color-text-primary)}
+.evt{display:flex;gap:10px;padding:8px 0;border-top:0.5px solid var(--color-border-tertiary);font-size:14px}
+.evt:first-of-type{border-top:0}
+.etime{min-width:74px;color:var(--color-text-secondary);font-size:13px;flex-shrink:0}
+.ebody{flex:1}
+.esub{color:var(--color-text-secondary);font-size:13px}
+.eicon{color:var(--color-text-secondary);font-size:16px;flex-shrink:0}
+.foot{text-align:center;color:var(--color-text-secondary);font-size:12px;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="hero">
+<div class="eyebrow">Côte d'Azur · June 21 to 27</div>
+<h1>Cannes Lions 2026</h1>
+<div class="sub">Justin's trip dashboard. Tap a section to navigate.</div>
+</div>
+
+<div class="tabbar" id="tabbar">
+<button class="tab active" data-go="overview"><i class="ti ti-layout-dashboard"></i>Overview</button>
+<button class="tab" data-go="calendar"><i class="ti ti-calendar-month"></i>Calendar</button>
+<button class="tab" data-go="flight"><i class="ti ti-plane"></i>Flight</button>
+<button class="tab" data-go="transfer"><i class="ti ti-car"></i>Transfer</button>
+<button class="tab" data-go="hotel"><i class="ti ti-bed"></i>Housing</button>
+<button class="tab" data-go="badge"><i class="ti ti-id"></i>Badge</button>
+<button class="tab" data-go="festival"><i class="ti ti-award"></i>Festival</button>
+<button class="tab" data-go="session"><i class="ti ti-microphone"></i>Session</button>
+<button class="tab" data-go="invites"><i class="ti ti-glass-full"></i>Invites</button>
+<button class="tab" data-go="meetings"><i class="ti ti-users"></i>Meetings</button>
+<button class="tab" data-go="budget"><i class="ti ti-wallet"></i>Budget</button>
+<button class="tab" data-go="todo"><i class="ti ti-list-check"></i>To-do</button>
+<button class="tab" data-go="contacts"><i class="ti ti-phone"></i>Contacts</button>
+</div>
+
+<div class="panel" data-panel="overview">
+<div class="metricgrid">
+<div class="metric"><div class="m-lbl"><i class="ti ti-confetti"></i>Festival</div><div class="m-val">Jun 22 to 26</div></div>
+<div class="metric"><div class="m-lbl"><i class="ti ti-plane-arrival"></i>Land Nice</div><div class="m-val">Jun 22, 8:15 AM</div></div>
+<div class="metric"><div class="m-lbl"><i class="ti ti-microphone"></i>Main stage</div><div class="m-val">Wed, 10:00 AM</div></div>
+<div class="metric"><div class="m-lbl"><i class="ti ti-ticket"></i>Queue</div><div class="m-val">Number 1</div></div>
+</div>
+<div class="callout"><i class="ti ti-alert-triangle"></i><div>Day 1 is tight. You land the morning the festival opens. Expect immigration delays, a 30 to 45 min transfer, and a bag drop before you reach the Palais. Treat Monday as arrival plus orientation, and load heavy meetings onto Tuesday through Thursday.</div></div>
+<div class="card" style="margin-top:12px">
+<div class="hdr"><i class="ti ti-route"></i>The flow</div>
+<div class="row"><span class="lbl"><i class="ti ti-plane"></i>Fly</span><span class="val">Delta 28, New York to Nice, overnight Jun 21 to 22</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-car"></i>Transfer</span><span class="val">Nice Airport to the hotel &nbsp;<a class="lk" href="https://www.google.com/maps/dir/?api=1&origin=Nice%20Cote%20d%27Azur%20Airport&destination=Pullman%20Mandelieu%20605%20Avenue%20du%20General%20de%20Gaulle%20Mandelieu-la-Napoule&travelmode=driving"><i class="ti ti-map-pin"></i>route</a></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-home"></i>Base</span><span class="val">Apartment, 32 rue d'Antibes, Cannes &nbsp;<a class="lk" href="https://www.google.com/maps/search/?api=1&query=32%20rue%20d%27Antibes%20Cannes"><i class="ti ti-map-pin"></i>map</a></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-microphone"></i>Talk</span><span class="val">Applied Creativity, Ndidi and Nick, Wed 10:00 to 10:30 AM, Lumière &nbsp;<span class="pill"><i class="ti ti-arrows-exchange"></i>moved</span></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-glass-full"></i>Lunches</span><span class="val">Eden Roc (Wed) and Belles Rives (Fri), both 1:00 PM</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-id"></i>Badge</span><span class="val">Gare Maritime, behind the Palais &nbsp;<a class="lk" href="https://www.google.com/maps/search/?api=1&query=Gare%20Maritime%20Cannes"><i class="ti ti-map-pin"></i>map</a></span></div>
+</div>
+</div>
+
+<div class="panel" data-panel="calendar">
+<div class="card">
+<div class="dayhdr"><span class="datebox"><span class="dow">Sun</span><span class="dnum">21</span></span><span class="daytitle">Departure</span></div>
+<div class="evt"><i class="ti ti-plane-departure eicon"></i><span class="etime">6:05 PM</span><div class="ebody">Depart New York on Delta 28<div class="esub">Overnight flight to Nice</div></div></div>
+</div>
+<div class="card">
+<div class="dayhdr"><span class="datebox"><span class="dow">Mon</span><span class="dnum">22</span></span><span class="daytitle">Arrival, festival day 1</span></div>
+<div class="evt"><i class="ti ti-plane-arrival eicon"></i><span class="etime">8:15 AM</span><div class="ebody">Land in Nice, clear immigration<div class="esub">Allow extra time for automated processing delays</div></div></div>
+<div class="evt"><i class="ti ti-car eicon"></i><span class="etime">9:00 AM</span><div class="ebody">Riviera Drivers transfer to the hotel <a class="lk" href="https://www.google.com/maps/dir/?api=1&origin=Nice%20Cote%20d%27Azur%20Airport&destination=Pullman%20Mandelieu%20605%20Avenue%20du%20General%20de%20Gaulle%20Mandelieu-la-Napoule&travelmode=driving"><i class="ti ti-map-pin"></i>route</a><div class="esub">Roughly 30 to 45 min on the A8. Estimated time.</div></div></div>
+<div class="evt"><i class="ti ti-id eicon"></i><span class="etime">11:00 AM</span><div class="ebody">Collect badge at the Gare Maritime <a class="lk" href="https://www.google.com/maps/search/?api=1&query=Gare%20Maritime%20Cannes"><i class="ti ti-map-pin"></i>map</a><div class="esub">Queue 1, allow 20+ min, bag checks. Estimated time.</div></div></div>
+<div class="evt"><i class="ti ti-sailboat eicon"></i><span class="etime">6:30 PM</span><div class="ebody">Kickoff at the catamaran party<div class="esub">6:30 to 9:30 PM</div></div></div>
+<div class="evt"><i class="ti ti-confetti eicon"></i><span class="etime">9:30 PM</span><div class="ebody">Pantone party<div class="esub">Time estimated. RSVP via Louisa's email. Optional after the catamaran and a long travel day.</div></div></div>
+</div>
+<div class="card">
+<div class="dayhdr"><span class="datebox"><span class="dow">Tue</span><span class="dnum">23</span></span><span class="daytitle">Festival day 2</span></div>
+<div class="evt"><i class="ti ti-users eicon"></i><span class="etime">9:00 AM on</span><div class="ebody">Client meetings and sessions<div class="esub">Prime day for heavy scheduling</div></div></div>
+</div>
+<div class="card">
+<div class="dayhdr"><span class="datebox"><span class="dow">Wed</span><span class="dnum">24</span></span><span class="daytitle">Festival day 3, main stage</span></div>
+<div class="evt"><i class="ti ti-microphone eicon"></i><span class="etime">10:00 AM</span><div class="ebody">Applied Creativity, Ndidi Oteh and Nick Law, Lumière <span class="pill"><i class="ti ti-arrows-exchange"></i>moved from Debussy</span><div class="esub">10:00 to 10:30 AM CET</div></div></div>
+<div class="evt"><i class="ti ti-glass-full eicon"></i><span class="etime">1:00 PM</span><div class="ebody">Lunch at The Grill, Eden Roc (Framestore and RadicalMedia)<div class="esub">Cap d'Antibes, about 25 to 30 min east of Cannes, arrange a car</div></div></div>
+</div>
+<div class="card">
+<div class="dayhdr"><span class="datebox"><span class="dow">Thu</span><span class="dnum">25</span></span><span class="daytitle">Festival day 4</span></div>
+<div class="evt"><i class="ti ti-users eicon"></i><span class="etime">9:00 AM on</span><div class="ebody">Client meetings and sessions</div></div>
+</div>
+<div class="card">
+<div class="dayhdr"><span class="datebox"><span class="dow">Fri</span><span class="dnum">26</span></span><span class="daytitle">Festival day 5</span></div>
+<div class="evt"><i class="ti ti-bus eicon"></i><span class="etime">12:15 PM</span><div class="ebody">Bus departs Hotel Martinez for Belles Rives<div class="esub">Be on the Croisette by 12:15</div></div></div>
+<div class="evt"><i class="ti ti-glass-full eicon"></i><span class="etime">1:00 PM</span><div class="ebody">Lunch at Hotel Belles Rives, swimming to follow<div class="esub">Arts &amp; Sciences, Framestore, Human, Arcade</div></div></div>
+<div class="evt"><i class="ti ti-building-castle eicon"></i><span class="etime">2:00 PM</span><div class="ebody">Collins House retreat (XP Land), invite only<div class="esub">Time estimated. Overlaps the Belles Rives lunch, so you will likely have to pick one.</div></div></div>
+<div class="evt"><i class="ti ti-confetti eicon"></i><span class="etime">8:00 PM</span><div class="ebody">Closing Party, VIP lounge access<div class="esub">Time estimated. Plan your own ride back to Mandelieu.</div></div></div>
+</div>
+<div class="card">
+<div class="dayhdr"><span class="datebox"><span class="dow">Sat</span><span class="dnum">27</span></span><span class="daytitle">Fly home</span></div>
+<div class="evt"><i class="ti ti-luggage eicon"></i><span class="etime">11:00 AM</span><div class="ebody">Hotel checkout<div class="esub">Leave Cannes by about 11:00 to make the 2 PM flight from Nice</div></div></div>
+<div class="evt"><i class="ti ti-plane-departure eicon"></i><span class="etime">2:00 PM</span><div class="ebody">Depart Nice on Delta 29, land JFK 5:08 PM</div></div>
+</div>
+</div>
+
+<div class="panel" data-panel="flight">
+<div class="card">
+<div class="hdr"><i class="ti ti-plane"></i>Out, Delta 28</div>
+<div class="subhdr">New York JFK to Nice NCE</div>
+<div class="row"><span class="lbl"><i class="ti ti-plane-departure"></i>Depart</span><span class="val">Sat Jun 21, 6:05 PM</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-plane-arrival"></i>Arrive</span><span class="val">Mon Jun 22, 8:15 AM</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-armchair"></i>Seat</span><span class="val">54F, Economy</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-hash"></i>PNR</span><span class="val">B2NQOT</span></div>
+</div>
+<div class="card">
+<div class="hdr"><i class="ti ti-plane"></i>Home, Delta 29</div>
+<div class="subhdr">Nice NCE to New York JFK</div>
+<div class="row"><span class="lbl"><i class="ti ti-plane-departure"></i>Depart</span><span class="val">Sat Jun 27, 2:00 PM</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-plane-arrival"></i>Arrive</span><span class="val">Sat Jun 27, 5:08 PM</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-armchair"></i>Seat</span><span class="val">Not selected yet, Economy</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-hash"></i>PNR</span><span class="val">CC39E4, status Submitted</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-radar"></i>Track</span><span class="val"><a class="lk" href="https://www.google.com/search?q=Delta%2029%20flight%20status"><i class="ti ti-external-link"></i>Flight status</a></span></div>
+</div>
+</div>
+
+<div class="panel" data-panel="transfer">
+<div class="card">
+<div class="hdr"><i class="ti ti-car"></i>Riviera Drivers</div>
+<div class="row"><span class="lbl"><i class="ti ti-map-pin"></i>Route</span><span class="val">Nice Airport to Pullman Mandelieu, roughly 30 to 45 min on the A8 &nbsp;<a class="lk" href="https://www.google.com/maps/dir/?api=1&origin=Nice%20Cote%20d%27Azur%20Airport&destination=Pullman%20Mandelieu%20605%20Avenue%20du%20General%20de%20Gaulle%20Mandelieu-la-Napoule&travelmode=driving"><i class="ti ti-external-link"></i>open map</a></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-phone"></i>Call</span><span class="val"><a class="lk" href="tel:+33619875583">+33 6 19 87 55 83</a></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-mail"></i>Email</span><span class="val"><a class="lk" href="mailto:contact@riviera-drivers.com?subject=Cannes%20Lions%20transfer">contact@riviera-drivers.com</a></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-credit-card"></i>Pay</span><span class="val">American Express accepted</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-alert-circle"></i>Note</span><span class="val">Book ahead. Drivers fill up fast during the festival. You will also want a car for the Wednesday Eden Roc lunch.</span></div>
+</div>
+</div>
+
+<div class="panel" data-panel="hotel">
+<div class="card">
+<div class="hdr"><i class="ti ti-home"></i>Cannes apartment</div>
+<div class="row"><span class="lbl"><i class="ti ti-map-pin"></i>Address</span><span class="val">32 rue d'Antibes, floors 3 and 4, Cannes &nbsp;<a class="lk" href="https://www.google.com/maps/search/?api=1&query=32%20rue%20d%27Antibes%20Cannes"><i class="ti ti-external-link"></i>open map</a><div class="esub">Central Cannes, walking distance to the Palais. Shared with Ryan and the others.</div></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-door"></i>Street door</span><span class="val">2535A</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-door"></i>Inside door</span><span class="val">Key + 0609</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-key"></i>Apartment</span><span class="val">4232</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-elevator"></i>Elevator</span><span class="val">3rd floor 33211, 4th floor 43211</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-parking"></i>Garage</span><span class="val">Gray d'Albion, level -2, spot 28, code 3535</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-wifi"></i>WiFi</span><span class="val">Freebox 1A3656, or Cannes suites 113</span></div>
+</div>
+<div class="card">
+<div class="hdr"><i class="ti ti-bed"></i>Pullman Mandelieu</div>
+<div class="row"><span class="lbl"><i class="ti ti-map-pin"></i>Address</span><span class="val">605 Av. du Général de Gaulle, 06210 Mandelieu-la-Napoule &nbsp;<a class="lk" href="https://www.google.com/maps/search/?api=1&query=Pullman%20Mandelieu%20605%20Avenue%20du%20General%20de%20Gaulle%20Mandelieu-la-Napoule"><i class="ti ti-external-link"></i>open map</a></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-calendar"></i>Dates</span><span class="val">Jun 22 to 26, breakfast included</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-bus"></i>Shuttle</span><span class="val">Hourly to the Palais, 7:00 AM to 7:00 PM</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-receipt"></i>Billing</span><span class="val">Charged to CZYPA001</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-world"></i>Hotel</span><span class="val"><a class="lk" href="https://all.accor.com/hotel/1168/index.en.shtml"><i class="ti ti-external-link"></i>Hotel website</a></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-info-circle"></i>Status</span><span class="val">Now the backup, since you are staying at the apartment. Cancel this booking so it is not left as a no-show.</span></div>
+</div>
+</div>
+
+<div class="panel" data-panel="badge">
+<div class="card">
+<div class="hdr"><i class="ti ti-id"></i>Badge collection</div>
+<div class="row"><span class="lbl"><i class="ti ti-hash"></i>Reg ID</span><span class="val">122915-fda</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-ticket"></i>Queue</span><span class="val">Number 1</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-map-pin"></i>Where</span><span class="val">Gare Maritime, behind the Palais des Festivals &nbsp;<a class="lk" href="https://www.google.com/maps/search/?api=1&query=Gare%20Maritime%20Cannes"><i class="ti ti-external-link"></i>open map</a></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-clock"></i>Allow</span><span class="val">20+ min, routine bag checks at entry</span></div>
+</div>
+<div class="card">
+<div class="hdr"><i class="ti ti-calendar-clock"></i>Opening times</div>
+<table class="htable">
+<tr><td>Sun 21 Jun (collection only)</td><td>8:00 AM to 8:00 PM</td></tr>
+<tr><td>Mon 22 Jun</td><td>8:00 AM to 8:00 PM</td></tr>
+<tr><td>Tue 23 Jun</td><td>8:00 AM to 8:00 PM</td></tr>
+<tr><td>Wed 24 to Fri 26 Jun</td><td>9:00 AM to 7:00 PM</td></tr>
+</table>
+</div>
+<div class="card">
+<div class="hdr"><i class="ti ti-star"></i>VIP perks on your pass</div>
+<span class="vip"><i class="ti ti-glass-full"></i>Clubhouse food and drink</span>
+<span class="vip"><i class="ti ti-microphone"></i>Priority Lumière and Debussy talks</span>
+<span class="vip"><i class="ti ti-trophy"></i>Daily Awards Shows</span>
+<span class="vip"><i class="ti ti-confetti"></i>VIP lounge at Closing Party</span>
+</div>
+</div>
+
+<div class="panel" data-panel="festival">
+<div class="card">
+<div class="hdr"><i class="ti ti-award"></i>Cannes Lions 2026</div>
+<div class="row"><span class="lbl"><i class="ti ti-calendar"></i>Dates</span><span class="val">June 22 to 26</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-building"></i>Venue</span><span class="val">Palais des Festivals, Cannes &nbsp;<a class="lk" href="https://www.google.com/maps/search/?api=1&query=Palais%20des%20Festivals%20et%20des%20Congres%20Cannes"><i class="ti ti-map-pin"></i>map</a></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-device-mobile"></i>App</span><span class="val">Sign in with justin.durazzo@accenture.com &nbsp;<a class="lk" href="https://apps.apple.com/us/search?term=cannes%20lions"><i class="ti ti-brand-apple"></i>iOS</a> &nbsp;<a class="lk" href="https://play.google.com/store/search?q=cannes%20lions&c=apps"><i class="ti ti-brand-google-play"></i>Android</a></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-layout-grid"></i>Portal</span><span class="val"><a class="lk" href="https://in.accenture.com/accenturesong/canneslions2026/"><i class="ti ti-external-link"></i>Accenture at Cannes Lions</a></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-news"></i>XP guide</span><span class="val"><a class="lk" href="https://newsletter.xp.land/xp-land-cannes-2026"><i class="ti ti-external-link"></i>XP Land Cannes 2026</a><div class="esub">Curated experiential events, activation tours, and brunches. Thursday is their unofficial Day of XP.</div></span></div>
+</div>
+</div>
+
+<div class="panel" data-panel="session">
+<div class="card">
+<div class="hdr"><i class="ti ti-microphone"></i>Applied Creativity</div>
+<div class="subhdr">Ndidi Oteh in conversation with Nick Law &nbsp;<span class="pill"><i class="ti ti-arrows-exchange"></i>updated</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-calendar"></i>When</span><span class="val">Wednesday, June 24, 2026, 10:00 to 10:30 AM CET</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-building"></i>Where</span><span class="val">Lumière Theatre, The Palais &nbsp;<a class="lk" href="https://www.google.com/maps/search/?api=1&query=Grand%20Auditorium%20Lumiere%20Palais%20des%20Festivals%20Cannes"><i class="ti ti-map-pin"></i>map</a><div class="esub">Moved from the Debussy</div></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-users"></i>Speakers</span><span class="val">Ndidi Oteh, CEO, Accenture Song &nbsp;and&nbsp; Nick Law, Creative Chairperson, Accenture Song</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-bulb"></i>About</span><span class="val">A conversation on why creative leadership belongs in the C-suite, and the commitment, structure, and expertise that turn imagination into meaningful products and experiences &nbsp;<a class="lk" href="https://www.canneslions.com/festival/programme/applied-creativity-73739"><i class="ti ti-external-link"></i>programme</a></span></div>
+</div>
+<div class="card">
+<div class="hdr"><i class="ti ti-files"></i>Updated materials</div>
+<div class="matrow"><i class="ti ti-file-text"></i><a class="lk" href="https://kxdocuments.accenture.com/Contribution/8811a186-0201-4926-a4db-570fb54b300e">Know Before You Go</a></div>
+<div class="matrow"><i class="ti ti-presentation"></i><a class="lk" href="https://kxdocuments.accenture.com/Contribution/787d6038-932f-41dd-bd10-7a8547b70ef2">Cannes Overview Deck</a></div>
+<div class="matrow"><i class="ti ti-file-description"></i><a class="lk" href="https://kxdocuments.accenture.com/Contribution/5d3c31da-2af3-45d5-b794-acfaf43b8935">Client-facing 1-pager</a></div>
+</div>
+<div class="card">
+<div class="hdr"><i class="ti ti-bell"></i>Watch for and action</div>
+<div class="todo"><i class="ti ti-square"></i><div>If you invited clients, send them the new date, time, and location</div></div>
+<div class="todo"><i class="ti ti-square"></i><div>An updated calendar invite is coming from CannesLions@accenture.com</div></div>
+<div class="todo"><i class="ti ti-square"></i><div>A Teams channel for on-ground attendees is being set up this weekend</div></div>
+<div class="todo"><i class="ti ti-square"></i><div>Questions go to <a class="lk" href="mailto:CannesLions@accenture.com">CannesLions@accenture.com</a></div></div>
+</div>
+<div class="callout"><i class="ti ti-device-desktop"></i><div>These are the logistics and client materials. The Lumière stage tech specs for the presentation itself are still pending.</div></div>
+</div>
+
+<div class="panel" data-panel="invites">
+<div class="card">
+<div class="hdr"><i class="ti ti-glass-full"></i>The Grill at Eden Roc</div>
+<div class="subhdr">Hosted by Framestore and RadicalMedia</div>
+<div class="row"><span class="lbl"><i class="ti ti-calendar"></i>When</span><span class="val">Wednesday, June 24, 1:00 PM</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-map-pin"></i>Where</span><span class="val">Hotel du Cap-Eden-Roc, Cap d'Antibes &nbsp;<a class="lk" href="https://www.google.com/maps/search/?api=1&query=Hotel%20du%20Cap-Eden-Roc%20Cap%20d%27Antibes"><i class="ti ti-map-pin"></i>map</a><div class="esub">About 25 to 30 min east of Cannes, arrange a car</div></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-mail"></i>RSVP</span><span class="val">Reply all to the invitation</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-users"></i>Hosts</span><span class="val">Jim, Rebecca, James, Brittney, Monica, Barrie and Harry</span></div>
+</div>
+<div class="card">
+<div class="hdr"><i class="ti ti-beach"></i>Hotel Belles Rives</div>
+<div class="subhdr">Hosted by Arts &amp; Sciences, Framestore, Human and Arcade</div>
+<div class="row"><span class="lbl"><i class="ti ti-calendar"></i>When</span><span class="val">Friday, June 26, 1:00 PM, swimming to follow</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-bus"></i>Transport</span><span class="val">Buses leave the Hotel Martinez at 12:15 PM &nbsp;<a class="lk" href="https://www.google.com/maps/search/?api=1&query=Hotel%20Martinez%20Cannes"><i class="ti ti-map-pin"></i>Martinez</a></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-map-pin"></i>Where</span><span class="val">Hotel Belles Rives, Juan-les-Pins &nbsp;<a class="lk" href="https://maps.app.goo.gl/KWTr4fdHuVDY4aJeA"><i class="ti ti-map-pin"></i>map</a></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-mail"></i>RSVP</span><span class="val"><a class="lk" href="mailto:rsvp@barriei.com">rsvp@barriei.com</a><div class="esub">Seats are limited, RSVP early</div></span></div>
+</div>
+<div class="card">
+<div class="hdr"><i class="ti ti-calendar-star"></i>XP Land week, via Atrbute</div>
+<div class="row"><span class="lbl"><i class="ti ti-confetti"></i>Pantone party</span><span class="val">Monday, June 22, evening<div class="esub">RSVP link is in Louisa StPierre's email</div></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-coffee"></i>Canva brunch</span><span class="val">The Business of XP at Canva Beach, with Ben Smith of Mayda on the panel &nbsp;<a class="lk" href="https://public.canva.site/experiential-brunch-at-cannes"><i class="ti ti-external-link"></i>RSVP and details</a></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-building-castle"></i>Collins House</span><span class="val">XP Land retreat, invite-only VIP chateau, 10 min walk from the beach, round-the-clock programming with quiet spots<div class="esub">Registration link is in Louisa's email. Could double as a quiet daytime base.</div></span></div>
+</div>
+</div>
+
+<div class="panel" data-panel="meetings">
+<div class="card">
+<div class="hdr"><i class="ti ti-users"></i>Client meetings</div>
+<div class="note">With Cannes Lions less than a week away, I'm working with Ami to finalize our Americas Song Cannes Lions Client Host commitments, which include having at least one client meeting documented in JiffleNow.<br><br>Could you please take a moment to update the <a class="inl" href="https://accenture.jifflenow.com/app/login?sessionTimeout=true&return_url=%2Fapp%2F">JiffleNow meeting scheduling tool</a> with any planned client meetings? If you have any questions or need help with the tool, please let me know. Thanks!</div>
+</div>
+<div class="card">
+<div class="hdr"><i class="ti ti-list-check"></i>Meeting actions</div>
+<div class="todo"><i class="ti ti-square"></i><div>Document at least one client meeting in JiffleNow &nbsp;<a class="lk" href="https://accenture.jifflenow.com/app/login?sessionTimeout=true&return_url=%2Fapp%2F"><i class="ti ti-external-link"></i>open tool</a></div></div>
+<div class="todo"><i class="ti ti-square"></i><div>Add all planned client meetings, including offsite ones</div></div>
+<div class="todo"><i class="ti ti-square"></i><div>Update your availability so you can be invited to relevant meetings</div></div>
+<div class="todo"><i class="ti ti-square"></i><div>Nominate your clients &nbsp;<a class="lk" href="https://accenture.lightning.force.com/lightning/cmp/c__FormCALComponent?c__Id=701VX00000XZi81&c__Name=Song%20-%20FY26%20-%20EV12857%20-%20Cannes%20Lions%20Festival%202026"><i class="ti ti-external-link"></i>MMS</a></div></div>
+</div>
+</div>
+
+<div class="panel" data-panel="budget">
+<div class="card">
+<div class="hdr"><i class="ti ti-wallet"></i>Expense lines</div>
+<div class="row"><span class="lbl"><i class="ti ti-plane"></i>Flights</span><span class="val">Round trip, both legs, billed to CZYPA001</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-car"></i>Taxi</span><span class="val">NYC rideshare plus the Nice transfer, reimbursable</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-coin"></i>Per Diem</span><span class="val">$130 per day x 7 travel days</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-bed"></i>Lodging</span><span class="val">Billed to CZYPA001, or $0 if the free Airbnb comes through</span></div>
+</div>
+<div class="callout"><i class="ti ti-info-circle"></i><div>Flights and hotel are billed directly to CZYPA001. Taxi, rideshare, and meals are fronted by you and submitted for reimbursement. The two lunches are hosted, so no cost to you. Dollar figures are kept off this page.</div></div>
+</div>
+
+<div class="panel" data-panel="todo">
+<div class="card">
+<div class="hdr"><i class="ti ti-list-check"></i>Before and on arrival</div>
+<div class="todo"><i class="ti ti-square"></i><div>Book the airport transfer &nbsp;<a class="lk" href="mailto:contact@riviera-drivers.com?subject=Cannes%20Lions%20transfer"><i class="ti ti-mail"></i>email driver</a></div></div>
+<div class="todo"><i class="ti ti-square"></i><div>RSVP to the Eden Roc lunch (reply all)</div></div>
+<div class="todo"><i class="ti ti-square"></i><div>RSVP to the Belles Rives lunch &nbsp;<a class="lk" href="mailto:rsvp@barriei.com"><i class="ti ti-mail"></i>rsvp@barriei.com</a> &nbsp;(seats limited)</div></div>
+<div class="todo"><i class="ti ti-square"></i><div>Arrange a car for the Wednesday Eden Roc lunch</div></div>
+<div class="todo"><i class="ti ti-square"></i><div>Book client meetings &nbsp;<a class="lk" href="https://accenture.jifflenow.com/app/login?sessionTimeout=true&return_url=%2Fapp%2F"><i class="ti ti-external-link"></i>JiffleNow</a></div></div>
+<div class="todo"><i class="ti ti-square"></i><div>Nominate your clients &nbsp;<a class="lk" href="https://accenture.lightning.force.com/lightning/cmp/c__FormCALComponent?c__Id=701VX00000XZi81&c__Name=Song%20-%20FY26%20-%20EV12857%20-%20Cannes%20Lions%20Festival%202026"><i class="ti ti-external-link"></i>MMS</a></div></div>
+<div class="todo"><i class="ti ti-square"></i><div>Forward the new session details to any clients you invited</div></div>
+<div class="todo"><i class="ti ti-square"></i><div>Select a seat for the return flight (Delta 29)</div></div>
+<div class="todo"><i class="ti ti-square"></i><div>Reformat main stage content for the Lumière once specs arrive</div></div>
+<div class="todo"><i class="ti ti-square"></i><div>Download the Cannes Lions app &nbsp;<a class="lk" href="https://apps.apple.com/us/search?term=cannes%20lions"><i class="ti ti-brand-apple"></i>iOS</a> &nbsp;<a class="lk" href="https://play.google.com/store/search?q=cannes%20lions&c=apps"><i class="ti ti-brand-google-play"></i>Android</a></div></div>
+<div class="todo"><i class="ti ti-square"></i><div>Collect your badge as soon as you reach the Palais</div></div>
+</div>
+</div>
+
+<div class="panel" data-panel="contacts">
+<div class="card">
+<div class="hdr"><i class="ti ti-phone"></i>Key numbers</div>
+<div class="row"><span class="lbl"><i class="ti ti-car"></i>Driver</span><span class="val"><a class="lk" href="tel:+33619875583">+33 6 19 87 55 83</a> &nbsp;Riviera Drivers</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-award"></i>Cannes</span><span class="val"><a class="lk" href="tel:+442070461155">+44 20 7046 1155</a> &nbsp;Delegate support</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-mail"></i>Event team</span><span class="val"><a class="lk" href="mailto:CannesLions@accenture.com">CannesLions@accenture.com</a></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-glass-full"></i>Belles RSVP</span><span class="val"><a class="lk" href="mailto:rsvp@barriei.com">rsvp@barriei.com</a></span></div>
+<div class="row"><span class="lbl"><i class="ti ti-shield"></i>ASOC</span><span class="val"><a class="lk" href="tel:+12027280645">+1 202 728 0645</a> &nbsp;Accenture security</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-first-aid-kit"></i>Intl SOS</span><span class="val"><a class="lk" href="tel:+442087628008">+44 20 8762 8008</a> &nbsp;London</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-device-mobile-message"></i>App help</span><span class="val"><a class="lk" href="mailto:appsupport@canneslions.com">appsupport@canneslions.com</a></span></div>
+</div>
+<div class="card">
+<div class="hdr"><i class="ti ti-briefcase"></i>Work references</div>
+<div class="row"><span class="lbl"><i class="ti ti-user"></i>EID</span><span class="val">justin.durazzo</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-code"></i>Job code</span><span class="val">CZYPA001</span></div>
+</div>
+<div class="card">
+<div class="hdr"><i class="ti ti-address-book"></i>People</div>
+<div class="row"><span class="lbl"><i class="ti ti-user"></i>Jonny Bauer</span><span class="val">Invited to the Wednesday main stage session</span></div>
+<div class="row"><span class="lbl"><i class="ti ti-user"></i>Louisa StPierre</span><span class="val"><a class="lk" href="tel:+12123806760">+1 212 380 6760</a> &nbsp;Atrbute, Head of Art and Innovation</span></div>
+</div>
+</div>
+
+<div class="foot">Cannes Lions 2026 trip dashboard</div>
+</div>
+
+<script>
+(function(){
+  var tabs=document.querySelectorAll('#tabbar .tab');
+  var panels=document.querySelectorAll('.panel');
+  function show(name){
+    panels.forEach(function(p){p.style.display=(p.getAttribute('data-panel')===name)?'block':'none';});
+    tabs.forEach(function(t){t.classList.toggle('active',t.getAttribute('data-go')===name);});
+    window.scrollTo({top:0,behavior:'instant'});
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.getAttribute('data-go'));});});
+  show('overview');
+})();
+</script>
+</body>
+</html>
